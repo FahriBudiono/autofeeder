@@ -1,0 +1,5 @@
+{
+  "name": "Smart Auto Feeder Dashboard",
+  "description": "A modern IoT dashboard to control and schedule your smart pet feeder via ESP32.",
+  "requestFramePermissions": []
+}

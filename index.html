@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Auto Feeder Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🐾</span>
+                <span class="logo-text">PET<span>FLOW</span></span>
+            </div>
+            <div class="nav-status">
+                <div id="status-indicator" class="status-pill offline">
+                    <span class="dot"></span>
+                    <span class="label">DISCONNECTED</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="app-wrapper">
+        <header class="hero">
+            <div class="hero-content">
+                <h1 id="display-pet-name">Welcome back!</h1>
+                <p class="hero-subtitle">Your smart feeding assistant is ready.</p>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="last-feed-time">--:--</span>
+                    <span class="stat-label">Last Feed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="total-feeds-today">0</span>
+                    <span class="stat-label">Feeds Today</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            <!-- Main Control Panel -->
+            <section class="card control-card span-2">
+                <div class="card-header">
+                    <div class="header-title">
+                        <i data-lucide="zap"></i>
+                        <h2>Quick Action</h2>
+                    </div>
+                </div>
+                <div class="feed-container">
+                    <button id="feed-btn" class="feed-button">
+                        <div class="button-inner">
+                            <span class="icon">🍗</span>
+                            <span class="text">DISPENSE FOOD</span>
+                        </div>
+                        <div class="button-glow"></div>
+                    </button>
+                    <div id="feed-status" class="status-text">System Ready</div>
+                </div>
+            </section>
+
+            <!-- Pet Identity -->
+            <section class="card pet-card">
+                <div class="card-header">
+                    <div class="header-title">
+                        <i data-lucide="user"></i>
+                        <h2>Pet Profile</h2>
+                    </div>
+                </div>
+                <div class="profile-form">
+                    <div class="avatar-upload">
+                        <div class="avatar-preview" id="pet-avatar-display">🐶</div>
+                    </div>
+                    <div class="form-fields">
+                        <div class="field">
+                            <label>Name</label>
+                            <input type="text" id="pet-name" placeholder="Pet Name">
+                        </div>
+                        <div class="field">
+                            <label>Breed</label>
+                            <input type="text" id="pet-breed" placeholder="Breed">
+                        </div>
+                        <button id="save-pet-btn" class="btn-primary">Update Profile</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scheduling -->
+            <section class="card schedule-card">
+                <div class="card-header">
+                    <div class="header-title">
+                        <i data-lucide="calendar"></i>
+                        <h2>Feeding Plan</h2>
+                    </div>
+                </div>
+                <div class="schedule-list">
+                    <div class="schedule-row">
+                        <span>Morning</span>
+                        <input type="time" id="j1" value="07:00">
+                    </div>
+                    <div class="schedule-row">
+                        <span>Afternoon</span>
+                        <input type="time" id="j2" value="12:00">
+                    </div>
+                    <div class="schedule-row">
+                        <span>Evening</span>
+                        <input type="time" id="j3" value="18:00">
+                    </div>
+                    <button id="save-schedule-btn" class="btn-outline">Sync Schedule</button>
+                    <div id="schedule-status" class="status-text mini"></div>
+                </div>
+            </section>
+
+            <!-- History -->
+            <section class="card history-card">
+                <div class="card-header">
+                    <div class="header-title">
+                        <i data-lucide="history"></i>
+                        <h2>Activity Log</h2>
+                    </div>
+                    <button id="clear-history-btn" class="btn-text">Clear</button>
+                </div>
+                <div id="history-list" class="log-container">
+                    <div class="empty-log">No recent activity</div>
+                </div>
+            </section>
+
+            <!-- Settings -->
+            <section class="card settings-card">
+                <div class="card-header">
+                    <div class="header-title">
+                        <i data-lucide="settings"></i>
+                        <h2>Connection</h2>
+                    </div>
+                </div>
+                <div class="settings-form">
+                    <div class="field">
+                        <label>ESP32 IP Address</label>
+                        <div class="input-action">
+                            <input type="text" id="esp-ip" placeholder="192.168.1.100">
+                            <button id="save-ip-btn">Link</button>
+                        </div>
+                    </div>
+                    <p class="note">Ensure your device is on the same network.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-line"></div>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon">🐾</span>
+                        <span class="logo-text">PET<span>FLOW</span></span>
+                    </div>
+                    <p class="brand-tagline">Smart solutions for your beloved pets. Designed for health, built for convenience.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Headquarters</h3>
+                    <p>PetFlow Tech Park</p>
+                    <p>Jl. Inovasi Digital No. 42</p>
+                    <p>Jakarta Selatan, 12345</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-item" title="Instagram">
+                            <i data-lucide="instagram"></i>
+                        </a>
+                        <a href="#" class="social-item" title="Twitter">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="#" class="social-item" title="Facebook">
+                            <i data-lucide="facebook"></i>
+                        </a>
+                        <a href="#" class="social-item" title="Github">
+                            <i data-lucide="github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>PETFLOW SMART SYSTEMS &copy; 2024</p>
+                <div class="footer-meta">
+                    <span>v2.0.4</span>
+                    <span class="separator">•</span>
+                    <span>System Secure</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
